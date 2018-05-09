@@ -117,7 +117,7 @@ public class IngredientServiceImplTest {
         Mono<Recipe> recipeMono = Mono.just(recipe);
 
         when(recipeReactiveRepository.findById(anyString())).thenReturn(recipeMono);
-
+        when(recipeReactiveRepository.save(any())).thenReturn(recipeMono);
         //when
         ingredientService.deleteById("1", "3").block();
 

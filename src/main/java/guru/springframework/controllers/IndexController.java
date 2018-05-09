@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.stream.Collectors;
+
 /**
  * Created by jt on 6/1/17.
  */
@@ -22,8 +24,7 @@ public class IndexController {
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model) {
         log.debug("Getting Index page");
-
-        model.addAttribute("recipes", recipeService.getRecipes());
+        model.addAttribute("recipes", recipeService.getRecipes().toStream().collect(Collectors.toSet()));
 
         return "index";
     }
